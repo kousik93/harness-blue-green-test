@@ -1,0 +1,20 @@
+image:
+  source: kousik93/simple-dump-server:v2
+  pullPolicy: IfNotPresent
+  resources:
+    limits:
+      cpu: "300m"
+      memory: "150Mi"
+    requests:
+      cpu: "200m"
+      memory: "100Mi"
+args:
+  tillerNamespace: secure-helm
+ingress:
+  fqdn:
+  class: internal
+  certSecretName:
+  affinity: ''
+
+ingress:
+  fqdn: ""

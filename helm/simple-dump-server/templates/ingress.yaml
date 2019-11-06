@@ -1,0 +1,36 @@
+{{- if .Values.ingress.class }}
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: simple-dump-server
+  labels:
+    app: simple-dump-server
+    heritage: {{.Release.Service | quote}}
+    release: {{.Release.Name | quote}}
+    chart: {{ .Chart.Name }}
+  annotations:
+    kubernetes.io/ingress.class: {{ .Values.ingress.class | quote}}
+    nginx.ingress.kubernetes.io/secure-backends: "false"
+    {{- if eq .Values.ingress.affinity "cookie" }}
+    nginx.ingress.kubernetes.io/affinity: "cookie"
+    nginx.ingress.kubernetes.io/session-cookie-hash: "sha1"
+    {{- else if eq .Values.ingress.affinity "client-ip"}}
+    nginx.ingress.kubernetes.io/upstream-hash-by: "$the_real_ip"
+    {{- else if ne .Values.ingress.affinity ""}}
+    {{ required "invalid value for .Values.ingress.affinity" "" }}
+    {{- end }}
+spec:
+  tls:
+  - hosts:
+    - {{ required ".Values.ingress.fqdn is required if .Values.ingress.class is non-empty" .Values.ingress.fqdn | quote}}
+    {{- if .Values.ingress.certSecretName }}
+    secretName: {{ .Values.ingress.certSecretName | quote}}
+    {{- end }}
+  rules:
+  - host: {{ required ".Values.ingress.fqdn is required if .Values.ingress.class is non-empty" .Values.ingress.fqdn | quote}}
+    http:
+      paths:
+      - backend:
+          serviceName: simple-dump-server
+          servicePort: 8080
+{{- end }}
