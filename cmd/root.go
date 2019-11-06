@@ -39,7 +39,7 @@ func serve() {
 	//Liveness Endpoint
 	r.HandleFunc("/healthz", func(w http.ResponseWriter, _ *http.Request) {
 		w.WriteHeader(http.StatusOK)
-		w.Write([]byte("OK"))
+		w.Write([]byte("GREEEN"))
 	})
 
 	//Readiness Endpoint
