@@ -3,28 +3,28 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   labels:
-    app: simple-dump-server
+    app: harness-blue-green-test
     heritage: {{.Release.Service | quote}}
     release: {{.Release.Name | quote}}
     chart: {{ .Chart.Name }}
   annotations:
     "service-version": {{ .Chart.AppVersion | quote }}
-  name: simple-dump-server
+  name: harness-blue-green-test
 spec:
   selector:
       matchLabels:
-        app: simple-dump-server
+        app: harness-blue-green-test
   template:
     metadata:
       labels:
         heritage: {{.Release.Service | quote}}
         release: {{.Release.Name | quote}}
         chart: {{ .Chart.Name }}
-        app: simple-dump-server
+        app: harness-blue-green-test
     spec:
-      serviceAccountName: simple-dump-server
+      serviceAccountName: harness-blue-green-test
       containers:
-      - name: simple-dump-server
+      - name: harness-blue-green-test
         readinessProbe:
           httpGet:
             path: /readyz

@@ -12,4 +12,4 @@ Available endpoints:
 
 
 Helm:
-helm install helm/simple-dump-server --namespace default --set 'ingress.fqdn=example.com' --name simple-dump-server
+helm install helm/harness-blue-green-test --namespace default --set 'ingress.fqdn=example.com' --name harness-blue-green-test

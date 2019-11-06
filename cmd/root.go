@@ -15,7 +15,7 @@ import (
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
-	Use:   "simple-dump-server",
+	Use:   "harness-blue-green-test",
 	Short: "A http server that dumps all information of requests it gets",
 	Run: func(cmd *cobra.Command, args []string) {
 		logrus.SetLevel(logrus.DebugLevel)

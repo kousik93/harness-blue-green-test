@@ -9,5 +9,5 @@ metadata:
     heritage: {{.Release.Service | quote}}
     release: {{.Release.Name | quote}}
     chart: {{ .Chart.Name }}
-    app: simple-dump-server
-  name: simple-dump-server
+    app: harness-blue-green-test
+  name: harness-blue-green-test

@@ -2,9 +2,9 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: simple-dump-server
+  name: harness-blue-green-test
   labels:
-    app: simple-dump-server
+    app: harness-blue-green-test
     heritage: {{.Release.Service | quote}}
     release: {{.Release.Name | quote}}
     chart: {{ .Chart.Name }}
@@ -31,6 +31,6 @@ spec:
     http:
       paths:
       - backend:
-          serviceName: simple-dump-server
+          serviceName: harness-blue-green-test
           servicePort: 8080
 {{- end }}

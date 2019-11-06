@@ -1,5 +1,5 @@
 image:
-  source: kousik93/simple-dump-server:v2
+  source: ${artifact.metadata.image}
   pullPolicy: IfNotPresent
   resources:
     limits:
@@ -11,10 +11,7 @@ image:
 args:
   tillerNamespace: secure-helm
 ingress:
-  fqdn:
+  fqdn: ${workflow.variables.fqdn_dev_esp_awslab}
   class: internal
   certSecretName:
   affinity: ''
-
-ingress:
-  fqdn: ""
