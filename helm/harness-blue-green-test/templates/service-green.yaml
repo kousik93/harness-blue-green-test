@@ -9,7 +9,7 @@ metadata:
   annotations:
     prometheus.io/scrape: "true"
     harness.io/stage-service: "true"
-  name: harness-blue-green-test
+  name: harness-blue-green-test-stage
 spec:
   ports:
   - port: 8080
