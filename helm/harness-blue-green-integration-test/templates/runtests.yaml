@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: hanress-blue-green-integration-test
+  annotations:
+    helm.sh/hook: "test-success"
+    "service-version": {{ .Chart.AppVersion | quote }}
+  labels:
+    app: hanress-blue-green-test
+    heritage: {{.Release.Service | quote}}
+    release: {{.Release.Name | quote}}
+    chart: {{ .Chart.Name }}
+spec:
+  dnsPolicy: "ClusterFirst"
+  dnsConfig:
+    options:
+    - name: single-request-reopen
+  serviceAccountName: hanress-blue-green-test
+  restartPolicy: Never
+  containers:
+  - name: test
+    image: centos:7
+    command:
+      - 'sh'
+      - '-c'
+      - 'sleep 10; exit 0;'
+  initContainers:
+  - name: wait-service
+    image: centos:7
+    command:
+      - 'sh'
+      - '-c'
+      - 'until curl -k https://{{ .Values.ingress.fqdn }}/healthz; do echo "waiting for hanress-blue-green"; sleep 2; done;'
