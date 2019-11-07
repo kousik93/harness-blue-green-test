@@ -1,2 +1,2 @@
 ingress:
-  fqdn: ${workflow.variables.fqdn-dev-esp-awslab}
+  fqdn: ${workflow.variables.fqdnStage-dev-esp-awslab}

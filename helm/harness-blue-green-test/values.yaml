@@ -12,6 +12,7 @@ args:
   tillerNamespace: secure-helm
 ingress:
   fqdn: ${workflow.variables.fqdn_dev_esp_awslab}
+  fqdnStage: ${workflow.variables.fqdnStage_dev_esp_awslab}
   class: internal
   certSecretName:
   affinity: ''
