@@ -33,7 +33,7 @@ spec:
       - backend:
           serviceName: harness-blue-green-test
           servicePort: 8080
-  - host: {{ required ".Values.ingress.fqdnStage is required if .Values.ingress.class is non-empty" .Values.ingress.fqdn | quote}}
+  - host: {{ required ".Values.ingress.fqdnStage is required if .Values.ingress.class is non-empty" .Values.ingress.fqdnStage | quote}}
     http:
       paths:
       - backend:
