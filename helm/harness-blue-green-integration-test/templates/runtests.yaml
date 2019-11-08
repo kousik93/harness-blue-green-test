@@ -1,7 +1,10 @@
+
+{{- $chartAppVersion := .Chart.AppVersion -}}
+{{- $releaseName := .Release.Name -}}
 apiVersion: v1
 kind: Pod
 metadata:
-  name: hanress-blue-green-integration-test
+  name: {{ tuple $releaseName $chartAppVersion | join "-" | quote }}
   annotations:
     helm.sh/hook: "test-success"
     "service-version": {{ .Chart.AppVersion | quote }}
