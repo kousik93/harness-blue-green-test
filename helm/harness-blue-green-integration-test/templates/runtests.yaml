@@ -18,7 +18,7 @@ spec:
   dnsConfig:
     options:
     - name: single-request-reopen
-  serviceAccountName: hanress-blue-green-test
+  serviceAccountName: hanress-blue-green-integration-test
   restartPolicy: Never
   containers:
   - name: test
